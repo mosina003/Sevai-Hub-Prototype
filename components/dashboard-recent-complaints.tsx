@@ -4,8 +4,10 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export default function DashboardRecentComplaints() {
+  const router = useRouter()
   const complaints = [
     {
       id: 'CMP-2026-001',
@@ -54,7 +56,11 @@ export default function DashboardRecentComplaints() {
           </thead>
           <tbody>
             {complaints.map((complaint) => (
-              <tr key={complaint.id} className="border-b border-border hover:bg-slate-50/50 transition-colors">
+              <tr 
+                key={complaint.id} 
+                className="border-b border-border hover:bg-slate-50/50 transition-colors cursor-pointer"
+                onClick={() => router.push(`/dashboard/complaints/${complaint.id}`)}
+              >
                 <td className="p-4 font-mono text-sm font-semibold text-primary">{complaint.id}</td>
                 <td className="p-4 text-sm">{complaint.department}</td>
                 <td className="p-4">

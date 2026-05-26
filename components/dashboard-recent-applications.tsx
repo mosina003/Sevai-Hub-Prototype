@@ -4,8 +4,10 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export default function DashboardRecentApplications() {
+  const router = useRouter()
   const applications = [
     {
       id: 'APP-2026-001',
@@ -61,7 +63,11 @@ export default function DashboardRecentApplications() {
           </thead>
           <tbody>
             {applications.map((app) => (
-              <tr key={app.id} className="border-b border-border hover:bg-slate-50/50 transition-colors">
+              <tr 
+                key={app.id} 
+                className="border-b border-border hover:bg-slate-50/50 transition-colors cursor-pointer"
+                onClick={() => router.push(`/dashboard/applications/${app.id}`)}
+              >
                 <td className="p-4 font-mono text-sm font-semibold text-primary">{app.id}</td>
                 <td className="p-4 text-sm">{app.service}</td>
                 <td className="p-4">

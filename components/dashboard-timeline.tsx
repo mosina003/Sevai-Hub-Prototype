@@ -1,8 +1,10 @@
 'use client'
 
 import { Card } from '@/components/ui/card'
+import { useRouter } from 'next/navigation'
 
 export default function DashboardTimeline() {
+  const router = useRouter()
   const activities = [
     {
       icon: '✓',
@@ -10,6 +12,7 @@ export default function DashboardTimeline() {
       time: 'Today',
       color: 'text-green-600',
       bgColor: 'bg-green-50',
+      href: '/dashboard/complaints/CMP-2026-001',
     },
     {
       icon: '✓',
@@ -17,6 +20,7 @@ export default function DashboardTimeline() {
       time: 'Yesterday',
       color: 'text-green-600',
       bgColor: 'bg-green-50',
+      href: '/dashboard/applications/APP-2026-001',
     },
     {
       icon: '📤',
@@ -24,6 +28,7 @@ export default function DashboardTimeline() {
       time: '2 Days Ago',
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
+      href: '/dashboard/documents',
     },
     {
       icon: '⏳',
@@ -31,6 +36,7 @@ export default function DashboardTimeline() {
       time: '3 Days Ago',
       color: 'text-yellow-600',
       bgColor: 'bg-yellow-50',
+      href: '/dashboard/applications/APP-2026-002',
     },
   ]
 
@@ -42,7 +48,12 @@ export default function DashboardTimeline() {
       
       <div className="p-4 space-y-4">
         {activities.map((activity, idx) => (
-          <div key={idx} className="flex gap-4 pb-4" style={{borderBottom: idx !== activities.length - 1 ? '1px solid #f0f0f0' : 'none'}}>
+          <div 
+            key={idx} 
+            className="flex gap-4 pb-4 cursor-pointer hover:bg-slate-50/50 p-2 -mx-2 rounded transition-colors"
+            onClick={() => router.push(activity.href)}
+            style={{borderBottom: idx !== activities.length - 1 ? '1px solid #f0f0f0' : 'none'}}
+          >
             <div className={`${activity.bgColor} w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${activity.color} font-bold text-sm`}>
               {activity.icon}
             </div>
