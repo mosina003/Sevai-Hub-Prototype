@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Eye, EyeOff, Lock, IdCard, Building2, ArrowRight, Shield } from 'lucide-react'
+import { Eye, EyeOff, Lock, IdCard, Building2, ArrowRight, Shield, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 
 export default function OfficerLoginForm() {
@@ -14,6 +14,7 @@ export default function OfficerLoginForm() {
   const [rememberMe, setRememberMe] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [loginError, setLoginError] = useState('')
+  const [showDemoCredentials, setShowDemoCredentials] = useState(false)
 
   const authorizedOfficer = {
     mobile: '9123582088',
@@ -272,6 +273,122 @@ export default function OfficerLoginForm() {
             <p className="text-xs text-slate-600">Activity logging in progress</p>
           </div>
         </div>
+      </div>
+
+      {/* Demo Credentials Section */}
+      <div className="mt-6 sm:mt-8 border border-blue-200 rounded-lg sm:rounded-xl bg-blue-50">
+        <button
+          type="button"
+          onClick={() => setShowDemoCredentials(!showDemoCredentials)}
+          className="w-full flex items-center justify-between p-4 sm:p-5 text-left hover:bg-blue-100 transition-colors rounded-lg sm:rounded-xl"
+        >
+          <div>
+            <p className="text-xs font-semibold text-blue-900 mb-1">📋 DEMO CREDENTIALS FOR TESTING</p>
+            <p className="text-xs text-blue-700">Click to view sample login credentials</p>
+          </div>
+          <ChevronDown
+            className={`w-5 h-5 text-blue-700 shrink-0 transition-transform ${
+              showDemoCredentials ? 'rotate-180' : ''
+            }`}
+          />
+        </button>
+
+        {showDemoCredentials && (
+          <div className="border-t border-blue-200 p-4 sm:p-5 space-y-4">
+            {/* Officer Login */}
+            <div className="bg-white rounded-lg p-4 border border-blue-100">
+              <p className="text-xs font-bold text-slate-900 mb-3">👮 FIELD OFFICER LOGIN</p>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-600">Officer ID:</span>
+                  <code className="text-xs bg-slate-100 px-3 py-1 rounded font-mono text-slate-900 font-semibold">
+                    9123582088
+                  </code>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-600">Password:</span>
+                  <code className="text-xs bg-slate-100 px-3 py-1 rounded font-mono text-slate-900 font-semibold">
+                    officer123
+                  </code>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-600">Role:</span>
+                  <span className="text-xs bg-blue-100 text-blue-900 px-3 py-1 rounded font-semibold">
+                    Field Officer
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-600">Department:</span>
+                  <span className="text-xs font-semibold text-slate-700">Revenue Department</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Department Admin Login */}
+            <div className="bg-white rounded-lg p-4 border border-blue-100">
+              <p className="text-xs font-bold text-slate-900 mb-3">🏛️ DEPARTMENT ADMIN LOGIN</p>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-600">Admin ID:</span>
+                  <code className="text-xs bg-slate-100 px-3 py-1 rounded font-mono text-slate-900 font-semibold">
+                    1234567890
+                  </code>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-600">Password:</span>
+                  <code className="text-xs bg-slate-100 px-3 py-1 rounded font-mono text-slate-900 font-semibold">
+                    dept123
+                  </code>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-600">Role:</span>
+                  <span className="text-xs bg-amber-100 text-amber-900 px-3 py-1 rounded font-semibold">
+                    Department Admin
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-600">Department:</span>
+                  <span className="text-xs font-semibold text-slate-700">Revenue Department</span>
+                </div>
+              </div>
+            </div>
+
+            {/* State Admin Login */}
+            <div className="bg-white rounded-lg p-4 border border-blue-100">
+              <p className="text-xs font-bold text-slate-900 mb-3">👑 STATE ADMIN LOGIN</p>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-600">Admin ID:</span>
+                  <code className="text-xs bg-slate-100 px-3 py-1 rounded font-mono text-slate-900 font-semibold">
+                    9876543210
+                  </code>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-600">Password:</span>
+                  <code className="text-xs bg-slate-100 px-3 py-1 rounded font-mono text-slate-900 font-semibold">
+                    state123
+                  </code>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-600">Role:</span>
+                  <span className="text-xs bg-purple-100 text-purple-900 px-3 py-1 rounded font-semibold">
+                    State Admin
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-600">Department:</span>
+                  <span className="text-xs font-semibold text-slate-700">Chief Minister Office</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-blue-100 border border-blue-200 rounded-lg p-3">
+              <p className="text-xs text-blue-900">
+                <strong>Note:</strong> These are demo credentials for testing purposes. In production, use your assigned credentials.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Footer Links */}
